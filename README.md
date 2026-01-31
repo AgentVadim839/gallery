@@ -25,12 +25,12 @@ Cloud-native application for uploading, analyzing, and searching images using **
 ### Environment Variables
 You must set these variables before running:
 ```bash
-AWS_ACCESS_KEY=key;
-AWS_BUCKET=your-bucket;
-AWS_REGION_STATIC=your-region;
-AWS_SECRET_KEY=your-secret-key;
-DB_HOST=db_host;
-DB_NAME=your_db;
-DB_PASSWORD=db_pass;
-DB_PORT=3306 (or your specific one);
+AWS_ACCESS_KEY=key
+AWS_BUCKET=your-bucket
+AWS_REGION_STATIC=your-region
+AWS_SECRET_KEY=your-secret-key
+DB_HOST=db_host
+DB_NAME=your_db
+DB_PASSWORD=db_pass
+DB_PORT=3306 (or your specific one)
 DB_USER=user
