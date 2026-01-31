@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f4f4f9; }
+        h1 { text-align: center; color: #333; }
+        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .upload-section, .search-section { margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        input[type="text"], input[type="file"] { padding: 10px; width: 60%; margin-right: 10px; }
+        button { padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+        .card { border: 1px solid #ddd; border-radius: 4px; overflow: hidden; background: #fff; }
+        .card img { width: 100%; height: 150px; object-fit: cover; }
+        .card-body { padding: 10px; font-size: 14px; color: #555; }
+        .tags { color: #007bff; font-weight: bold; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Gallery</h1>
+
+    <div class="upload-section">
+        <h3>1. Upload Image</h3>
+        <form method="POST" action="/upload" enctype="multipart/form-data">
+            <input type="file" name="file" required />
+            <button type="submit">Upload</button>
+        </form>
+        <p th:if="${message}" th:text="${message}" style="color: green; font-weight: bold;"></p>
+    </div>
+
+    <div class="search-section">
+        <h3>2. Search by Tag (Leave blank to view all pictures)</h3>
+        <form method="GET" action="/">
+            <input type="text" name="tag" placeholder="e.g. Cat, Car, Human..." th:value="${tag}" />
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div class="gallery">
+        <div class="card" th:each="img : ${images}">
+            <a th:href="${img.url}" target="_blank">
+                <img th:src="${img.url}" alt="Image">
+            </a>
+            <div class="card-body">
+                <p class="tags" th:text="${img.tags}">Tags here</p>
+            </div>
+        </div>
+        <p th:if="${images != null && images.empty}">No images found.</p>
+    </div>
+</div>
+
+</body>
+</html>
